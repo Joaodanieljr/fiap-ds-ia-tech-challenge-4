@@ -1,19 +1,32 @@
 """Geracao de respostas com Gemini, sempre condicionada a evidencias."""
 
-from google import genai
+from __future__ import annotations
 
-from voice_of_customer.config import Settings
+from typing import TYPE_CHECKING, Any
+
 from voice_of_customer.models import Evidence
+
+if TYPE_CHECKING:
+    from voice_of_customer.config import Settings
 
 
 class GeminiAnswerGenerator:
     def __init__(self, settings: Settings) -> None:
-        if not settings.gemini_api_key:
-            raise ValueError("Defina GEMINI_API_KEY no arquivo .env local.")
-        self.client = genai.Client(api_key=settings.gemini_api_key)
+        self.api_key = settings.gemini_api_key
         self.model = settings.gemini_model
+        self.client: Any | None = None
 
     def generate(self, question: str, evidence: list[Evidence]) -> str:
+        if not evidence:
+            raise ValueError("GeminiAnswerGenerator requer evidencias para responder.")
+        if not self.api_key:
+            raise ValueError("Defina GEMINI_API_KEY no arquivo .env local.")
+
+        if self.client is None:
+            from google import genai
+
+            self.client = genai.Client(api_key=self.api_key)
+
         context = "\n\n".join(
             f"[review_id={item.review_id}] {item.text}" for item in evidence
         )
@@ -34,4 +47,6 @@ Avaliacoes recuperadas:
             model=self.model,
             contents=prompt,
         )
-        return response.text or "Nao foi possivel gerar uma resposta com as evidencias recuperadas."
+        if not response.text:
+            raise RuntimeError("O Gemini retornou uma resposta vazia.")
+        return response.text

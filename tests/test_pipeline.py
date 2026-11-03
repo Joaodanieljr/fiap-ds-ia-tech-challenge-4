@@ -1,7 +1,10 @@
 import sys
 from types import ModuleType, SimpleNamespace
 
+import pytest
+
 from voice_of_customer import retrieval
+from voice_of_customer.generation import GeminiAnswerGenerator
 from voice_of_customer.models import Evidence
 from voice_of_customer.pipeline import RagPipeline
 
@@ -34,6 +37,18 @@ def test_pipeline_abstains_without_evidence() -> None:
     assert result.abstained is True
     assert result.evidence == []
     assert generator.calls == 0
+
+
+def test_pipeline_abstains_without_gemini_key_when_retrieval_is_empty() -> None:
+    generator = GeminiAnswerGenerator(
+        SimpleNamespace(gemini_api_key="", gemini_model="gemini-test")
+    )
+    pipeline = RagPipeline(FakeRetriever([]), generator)
+
+    result = pipeline.answer("Pergunta fora do escopo")
+
+    assert result.abstained is True
+    assert result.evidence == []
 
 
 def test_pipeline_returns_answer_and_evidence() -> None:
@@ -137,3 +152,65 @@ def test_chroma_retriever_uses_index_embedding_contract(monkeypatch) -> None:
             distance=0.2,
         )
     ]
+
+
+def test_gemini_generator_uses_evidence_and_cites_review_ids(monkeypatch) -> None:
+    request: dict[str, str] = {}
+    created_clients: list[str] = []
+
+    class FakeModels:
+        def generate_content(self, *, model: str, contents: str):
+            request.update(model=model, contents=contents)
+            return SimpleNamespace(text="A entrega atrasou [review_id=review-123].")
+
+    class FakeClient:
+        def __init__(self, *, api_key: str) -> None:
+            created_clients.append(api_key)
+            self.models = FakeModels()
+
+    google = ModuleType("google")
+    google.genai = SimpleNamespace(Client=FakeClient)
+    monkeypatch.setitem(sys.modules, "google", google)
+
+    generator = GeminiAnswerGenerator(
+        SimpleNamespace(gemini_api_key="test-key", gemini_model="gemini-test")
+    )
+    evidence = [
+        Evidence(
+            review_id="review-123",
+            text="Entrega chegou atrasada.",
+        )
+    ]
+
+    answer = generator.generate("A entrega atrasou?", evidence)
+
+    assert answer == "A entrega atrasou [review_id=review-123]."
+    assert created_clients == ["test-key"]
+    assert request["model"] == "gemini-test"
+    assert "A entrega atrasou?" in request["contents"]
+    assert "[review_id=review-123] Entrega chegou atrasada." in request["contents"]
+    assert "usando somente as avaliacoes fornecidas" in request["contents"]
+
+
+def test_gemini_generator_raises_when_response_is_empty(monkeypatch) -> None:
+    class FakeModels:
+        def generate_content(self, *, model: str, contents: str):
+            return SimpleNamespace(text=None)
+
+    class FakeClient:
+        def __init__(self, *, api_key: str) -> None:
+            self.models = FakeModels()
+
+    google = ModuleType("google")
+    google.genai = SimpleNamespace(Client=FakeClient)
+    monkeypatch.setitem(sys.modules, "google", google)
+
+    generator = GeminiAnswerGenerator(
+        SimpleNamespace(gemini_api_key="test-key", gemini_model="gemini-test")
+    )
+
+    with pytest.raises(RuntimeError, match="resposta vazia"):
+        generator.generate(
+            "A entrega atrasou?",
+            [Evidence(review_id="review-123", text="Entrega atrasada.")],
+        )

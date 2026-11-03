@@ -23,7 +23,7 @@ def load_settings() -> Settings:
 
     return Settings(
         gemini_api_key=os.getenv("GEMINI_API_KEY", ""),
-        gemini_model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
+        gemini_model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
         chroma_persist_directory=os.getenv(
             "CHROMA_PERSIST_DIRECTORY", "./data/chroma"
         ),

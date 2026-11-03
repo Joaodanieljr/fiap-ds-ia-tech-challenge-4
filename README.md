@@ -3,17 +3,17 @@
 
 Solucao de Voice of Customer com RAG sobre avaliacoes do Brazilian E-Commerce Public Dataset by Olist.
 
-# fiap-ds-ia-tech-challenge-4
-Quarto tech challenge do curso de Data Science com IA
-
 ## Instalação e execução
+
+Os comandos abaixo partem de um clone limpo e geram uma amostra local para desenvolvimento. Para
+executar a base completa, veja a opção ao final da etapa 5.
 
 ### Pré-requisitos
 
 - Python 3.11 ou 3.12
 - Git
 
-### 1. Clonar o repositório e criar o ambiente virtual
+### 1. Clonar o repositório e criar/ativar o ambiente virtual
 
 ```bash
 git clone https://github.com/Joaodanieljr/fiap-ds-ia-tech-challenge-4.git
@@ -21,30 +21,53 @@ cd fiap-ds-ia-tech-challenge-4
 python -m venv .venv
 ```
 
-Ative o ambiente:
+No Windows, usando PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+No Linux/macOS:
 
 ```bash
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
-
-# Linux / macOS
 source .venv/bin/activate
 ```
 
-### 2. Instalar as dependências
+Confirme que o ambiente está ativo: o prompt do terminal deve começar com `(.venv)`. Se o PowerShell
+bloquear a ativação por política de execução, use `.\.venv\Scripts\python.exe` no lugar de `python`
+nos comandos seguintes.
+
+### 2. Instalar dependências da aplicação e da preparação de dados
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]" -r requirements.txt
 ```
 
-### 3. Baixar os dados
+Isso instala a interface Streamlit, o cliente Gemini, ChromaDB, o modelo local de embeddings,
+as ferramentas de preparação/download dos dados e o pytest.
 
-```bash
+### 3. Configurar a chave Gemini
+
+Copie o modelo de configuração:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Edite `.env` e preencha `GEMINI_API_KEY` com uma chave da API Gemini. O modelo padrão já está
+configurado em `GEMINI_MODEL`. Nunca compartilhe ou versione `.env`; ele está ignorado pelo Git.
+Não é necessário informar a chave para baixar os dados, gerar embeddings ou executar os testes
+unitários, mas ela é necessária para gerar respostas reais com o Gemini.
+
+### 4. Baixar os dados
+
+```powershell
 python src/baixar_dados.py
 ```
 
 O script baixa o [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-via `kagglehub` e copia para `data/raw/` apenas as tabelas usadas pela solução:
+via `kagglehub` e copia para `data/raw/` apenas estas tabelas:
 
 | Arquivo | Uso na solução |
 |---|---|
@@ -59,19 +82,51 @@ via `kagglehub` e copia para `data/raw/` apenas as tabelas usadas pela solução
 > Caso o `kagglehub` solicite autenticação, gere um token em *kaggle.com → Settings → API →
 > Create New Token* e salve o `kaggle.json` em `~/.kaggle/` (Windows: `C:\Users\<usuario>\.kaggle\`).
 
-### 4. Gerar a base de conhecimento (índice vetorial)
+### 5. Gerar o índice vetorial
 
 ```bash
-python src/indexar_base.py
+python src/indexar_base.py --amostra 2000
 ```
 
-O script limpa os comentários, junta os metadados (nota, categoria, data da compra e situação
-da entrega), gera os embeddings com o modelo `paraphrase-multilingual-MiniLM-L12-v2` e grava o
-índice no ChromaDB em `data/chroma/`. Leva de 5 a 15 minutos em CPU; na primeira execução, o
-modelo (~470 MB) é baixado automaticamente.
+O comando acima prepara uma amostra reprodutível de 2.000 avaliações e grava o índice Chroma em
+`data/chroma/`. Os dados brutos baixados ficam em `data/raw/`. Na primeira execução, o modelo de
+embeddings é baixado automaticamente; o tempo depende da conexão e do computador.
 
-> Para desenvolvimento, `python src/indexar_base.py --amostra 2000` gera um índice reduzido em
-> menos de 1 minuto. Atenção: os limiares de distância devem ser calibrados no índice completo.
+> **Atenção:** cada execução recria a coleção `avaliacoes_olist`. Gerar a amostra depois do índice
+> completo (ou vice-versa) substitui a coleção anterior. Para indexar a base completa, rode
+> `python src/indexar_base.py` no lugar do comando com `--amostra`.
+
+### 6. Executar os testes automatizados
+
+```powershell
+python -m pytest -q
+```
+
+Os testes não chamam a API Gemini nem precisam de uma chave válida.
+
+### 7. Fazer o teste ponta a ponta
+
+Inicie a interface:
+
+```powershell
+streamlit run app.py
+```
+
+Se o Streamlit perguntar se deseja informar um e-mail para receber novidades, pressione Enter sem
+preencher. Abra o endereço local mostrado no terminal (normalmente `http://localhost:8501`), faça uma
+pergunta como **“Quais problemas aparecem nos relatos sobre produtos que chegaram quebrados?”** e
+clique em **Buscar resposta**. Confira se a resposta é acompanhada pelos reviews citados e se os
+`review_id`, textos e metadados exibidos são coerentes com a pergunta.
+
+Para testar um caso fora do escopo, experimente **“Qual é a capital da França?”** e avalie a
+resposta com atenção. **Limitação atual:** o pipeline se abstém quando a busca retorna zero
+avaliações, mas ainda não aplica um limiar de distância calibrado para descartar resultados
+irrelevantes. Portanto, uma pergunta fora do escopo pode recuperar reviews e não gerar abstinência;
+não considere esse comportamento validado até a calibração ser implementada.
+
+Se a API retornar `503 UNAVAILABLE`, o modelo pode estar temporariamente sobrecarregado; tente
+novamente mais tarde. Erros de autenticação indicam que a chave ou as permissões da API precisam ser
+conferidas no `.env`.
 
 ## Base de conhecimento
 
@@ -187,6 +242,7 @@ distância de cosseno (quanto menor, mais parecido):
 | "produto chegou quebrado ou com defeito" (filtro `nota <= 2`) | 0,12 – 0,13 | Todos os textos relatam produto quebrado ou com defeito, em 5 categorias diferentes |
 | "qual é a capital da França?" (fora do escopo) | 0,52 – 0,65 | Textos genéricos, sem relação com a pergunta |
 
-A separação entre as duas faixas é a base do limiar usado pelo pipeline para recusar perguntas sem
-evidência suficiente. Na amostra de 2 mil documentos as distâncias são maiores (0,17–0,26 e
-0,70–0,75), por isso o limiar deve ser calibrado sempre no índice completo.
+A separação observada nessas consultas é uma referência exploratória, não um limiar já aplicado
+pelo pipeline. Na amostra de 2 mil documentos as distâncias podem variar; qualquer limiar de
+abstinência precisa ser avaliado com exemplos rotulados e na mesma configuração de índice que será
+usada na execução final.
