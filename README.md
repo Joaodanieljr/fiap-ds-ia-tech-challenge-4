@@ -11,8 +11,8 @@ Quarto tech challenge do curso de Data Science com IA
 ### 1. Clonar o repositório e criar o ambiente virtual
 
 ```bash
-git clone <URL_DO_REPO>
-cd <nome-do-repo>
+git clone https://github.com/<USUARIO>/fiap-ds-ia-tech-challenge-4.git
+cd fiap-ds-ia-tech-challenge-4
 python -m venv .venv
 ```
 
@@ -53,3 +53,17 @@ via `kagglehub` e copia para `data/raw/` apenas as tabelas usadas pela solução
 >
 > Caso o `kagglehub` solicite autenticação, gere um token em *kaggle.com → Settings → API →
 > Create New Token* e salve o `kaggle.json` em `~/.kaggle/` (Windows: `C:\Users\<usuario>\.kaggle\`).
+
+### 4. Gerar a base de conhecimento (índice vetorial)
+
+```bash
+python src/indexar_base.py
+```
+
+O script limpa os comentários, junta os metadados (nota, categoria, data da compra e situação
+da entrega), gera os embeddings com o modelo `paraphrase-multilingual-MiniLM-L12-v2` e grava o
+índice no ChromaDB em `data/chroma/`. Leva de 5 a 15 minutos em CPU; na primeira execução, o
+modelo (~470 MB) é baixado automaticamente.
+
+> Para desenvolvimento, `python src/indexar_base.py --amostra 2000` gera um índice reduzido em
+> menos de 1 minuto. Atenção: os limiares de distância devem ser calibrados no índice completo.
