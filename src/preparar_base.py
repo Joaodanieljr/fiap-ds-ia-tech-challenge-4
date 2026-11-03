@@ -1,7 +1,7 @@
 """
 Prepara a base de conhecimento: limpa os comentários das avaliações e junta
 os metadados usados nos filtros do RAG (nota, categoria, data, entrega).
-Regras de limpeza justificadas na seção "Base de conhecimento" do README.
+Regras de limpeza justificadas em docs/data-preparation.md.
 """
 from pathlib import Path
 
