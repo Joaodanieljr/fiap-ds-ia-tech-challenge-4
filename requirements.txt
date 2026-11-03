@@ -1,0 +1,10 @@
+# Dados
+pandas
+kagglehub
+
+# Base de conhecimento (embeddings + banco vetorial)
+sentence-transformers
+chromadb
+
+# Notebooks de exploração
+ipykernel

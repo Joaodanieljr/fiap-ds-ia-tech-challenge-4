@@ -160,6 +160,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # Spyder project settings
 .spyderproject
@@ -221,7 +222,4 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Local vector database and datasets
 data/
-chroma/
-chroma_db/
