@@ -11,7 +11,7 @@ Quarto tech challenge do curso de Data Science com IA
 ### 1. Clonar o repositório e criar o ambiente virtual
 
 ```bash
-git clone https://github.com/<USUARIO>/fiap-ds-ia-tech-challenge-4.git
+git clone https://github.com/Joaodanieljr/fiap-ds-ia-tech-challenge-4.git
 cd fiap-ds-ia-tech-challenge-4
 python -m venv .venv
 ```
