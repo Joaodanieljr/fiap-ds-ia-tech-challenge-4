@@ -37,6 +37,12 @@ O passo a passo reproduzível — ambiente virtual, dependências, chave Gemini,
 geração do índice de amostra e execução da aplicação — está em
 [docs/getting-started.md](docs/getting-started.md).
 
+## Avaliação
+
+A bateria exploratória, os resultados registrados e os limites da validação estão em
+[docs/benchmark.md](docs/benchmark.md). Os resultados exercitam o pipeline e os filtros, mas não
+representam uma métrica de precisão/recall nem uma calibração da abstinência.
+
 ## Estado e limitações conhecidos
 
 - Validado localmente com índice de amostra de 2.000 reviews: busca semântica, filtros Chroma e
@@ -46,6 +52,8 @@ geração do índice de amostra e execução da aplicação — está em
   para rejeitar resultados semanticamente fracos.
 - O smoke test não substitui a avaliação estruturada da bateria de perguntas nem a validação do
   índice completo. Não use a amostra para tirar conclusões quantitativas sobre todos os clientes.
+- O benchmark registra cinco resultados por consulta, inclusive nas perguntas fora do escopo; o
+  pipeline ainda não rejeita resultados semanticamente fracos com um limiar calibrado.
 - Dados, índices, credenciais e configurações locais não fazem parte do repositório.
 
 ## Estrutura do repositório
