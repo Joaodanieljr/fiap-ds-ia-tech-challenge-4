@@ -1,187 +1,74 @@
-# fiap-ds-ia-tech-challenge-4
-Quarto tech challenge do curso de Data Science com IA
+# Voice of Customer | Olist
 
-## Instalação e execução
+Assistente de análise qualitativa de avaliações do Brazilian E-Commerce Public Dataset by Olist.
+O usuário faz uma pergunta em linguagem natural; o sistema busca reviews relacionados e gera uma
+resposta com referências às avaliações que serviram de evidência.
 
-### Pré-requisitos
+## Valor para o negócio
 
-- Python 3.11 ou 3.12
-- Git
+O projeto reduz o esforço de explorar manualmente milhares de comentários e ajuda a identificar
+temas relatados pelos clientes, como defeitos, atrasos e experiências positivas. As respostas são
+qualitativas: a busca por similaridade não equivale a uma contagem estatística e não deve ser usada,
+sozinha, para afirmar frequência ou causalidade.
 
-### 1. Clonar o repositório e criar o ambiente virtual
+## Como funciona
 
-```bash
-git clone https://github.com/Joaodanieljr/fiap-ds-ia-tech-challenge-4.git
-cd fiap-ds-ia-tech-challenge-4
-python -m venv .venv
+```mermaid
+flowchart LR
+    Q[Pergunta] --> E[Embedding da consulta]
+    E --> C[Busca semântica no Chroma]
+    C --> R[Reviews e metadados]
+    R --> G[Gemini, restrito às evidências]
+    G --> A[Resposta com review_id]
+
+    D[Reviews Olist] --> P[Limpeza e enriquecimento]
+    P --> V[Embeddings normalizados]
+    V --> C
 ```
 
-Ative o ambiente:
+O índice usa a coleção `avaliacoes_olist`, distância cosine e o modelo
+`paraphrase-multilingual-MiniLM-L12-v2`. Detalhes da arquitetura e das decisões técnicas estão em
+[docs/architecture.md](docs/architecture.md); regras de seleção, limpeza, metadados e indexação
+estão em [docs/data-preparation.md](docs/data-preparation.md).
 
-```bash
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
+## Executar
 
-# Linux / macOS
-source .venv/bin/activate
+O passo a passo reproduzível — ambiente virtual, dependências, chave Gemini, download dos dados,
+geração do índice de amostra e execução da aplicação — está em
+[docs/getting-started.md](docs/getting-started.md).
+
+## Estado e limitações conhecidos
+
+- Validado localmente com índice de amostra de 2.000 reviews: busca semântica, filtros Chroma e
+  uma chamada real ao Gemini com citações correspondentes aos reviews recuperados.
+- Os testes automatizados usam doubles para os serviços externos e não consomem a API Gemini.
+- A abstinência atual ocorre quando a busca retorna zero resultados. Ainda não há limiar calibrado
+  para rejeitar resultados semanticamente fracos.
+- O smoke test não substitui a avaliação estruturada da bateria de perguntas nem a validação do
+  índice completo. Não use a amostra para tirar conclusões quantitativas sobre todos os clientes.
+- Dados, índices, credenciais e configurações locais não fazem parte do repositório.
+
+## Estrutura do repositório
+
+```text
+.
+├── app.py                       # Interface Streamlit
+├── docs/                        # Guias, arquitetura e preparação dos dados
+├── notebooks/                   # Exploração e experimentos de busca
+├── src/
+│   ├── baixar_dados.py           # Download das tabelas Olist
+│   ├── indexar_base.py           # Construção do índice Chroma
+│   ├── preparar_base.py          # Limpeza e enriquecimento dos reviews
+│   └── voice_of_customer/        # Recuperação, pipeline, Gemini e modelos
+├── tests/                       # Testes automatizados
+├── .env.example                  # Modelo de configuração local, sem segredos
+└── pyproject.toml                # Dependências e configuração do pacote
 ```
 
-### 2. Instalar as dependências
+`requirements.txt` é um atalho de instalação que aponta para os extras definidos no `pyproject.toml`.
 
-```bash
-pip install -r requirements.txt
-```
+## Segurança e dados
 
-### 3. Baixar os dados
-
-```bash
-python src/baixar_dados.py
-```
-
-O script baixa o [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-via `kagglehub` e copia para `data/raw/` apenas as tabelas usadas pela solução:
-
-| Arquivo | Uso na solução |
-|---|---|
-| `olist_order_reviews_dataset.csv` | Comentários das avaliações (texto da base de conhecimento) e nota |
-| `olist_orders_dataset.csv` | Datas de compra e entrega (cálculo de atraso) |
-| `olist_order_items_dataset.csv` | Relação entre pedido e produto |
-| `olist_products_dataset.csv` | Categoria do produto |
-
-> Os dados não são versionados no Git (`data/` está no `.gitignore`). O dataset é público e
-> estático (pedidos de 2016 a 2018), então qualquer execução obtém a mesma base.
->
-> Caso o `kagglehub` solicite autenticação, gere um token em *kaggle.com → Settings → API →
-> Create New Token* e salve o `kaggle.json` em `~/.kaggle/` (Windows: `C:\Users\<usuario>\.kaggle\`).
-
-### 4. Gerar a base de conhecimento (índice vetorial)
-
-```bash
-python src/indexar_base.py
-```
-
-O script limpa os comentários, junta os metadados (nota, categoria, data da compra e situação
-da entrega), gera os embeddings com o modelo `paraphrase-multilingual-MiniLM-L12-v2` e grava o
-índice no ChromaDB em `data/chroma/`. Leva de 5 a 15 minutos em CPU; na primeira execução, o
-modelo (~470 MB) é baixado automaticamente.
-
-> Para desenvolvimento, `python src/indexar_base.py --amostra 2000` gera um índice reduzido em
-> menos de 1 minuto. Atenção: os limiares de distância devem ser calibrados no índice completo.
-
-## Base de conhecimento
-
-A base de conhecimento transforma as avaliações escritas pelos clientes em documentos pesquisáveis
-semanticamente. As decisões abaixo foram tomadas a partir da análise exploratória em
-[`notebooks/01_exploracao_base.ipynb`](notebooks/01_exploracao_base.ipynb) e estão implementadas em
-[`src/preparar_base.py`](src/preparar_base.py) e [`src/indexar_base.py`](src/indexar_base.py).
-
-**Resultado:** de 99.224 avaliações, **38.624 documentos** compõem a base final.
-
-### 1. Seleção dos dados
-
-| Etapa | Avaliações |
-|---|---|
-| Avaliações na base original | 99.224 |
-| Com algum texto (título ou comentário) | 42.706 |
-| Após remover `review_id` duplicados e textos com menos de 10 caracteres | **38.624** |
-
-- **Só avaliações com texto entram na base.** O objetivo é explorar a voz do cliente, e avaliações
-  apenas com nota não têm conteúdo para ser recuperado nem citado como evidência.
-- **Apenas 4 das 9 tabelas do dataset são usadas** (avaliações, pedidos, itens e produtos): são as
-  que trazem o texto e os metadados úteis para a recuperação. As demais (pagamentos, vendedores,
-  geolocalização) não respondem às perguntas de negócio do desafio.
-
-### 2. Limpeza e preparação dos textos
-
-- **Documento = título + comentário.** O título falta em 88% das avaliações, mas, quando existe,
-  costuma resumir o problema ("Produto com defeito") e reforça o sinal semântico.
-- **Normalização mínima:** remoção de espaços extras e quebras de linha. **Não** removemos acentos,
-  stopwords nem convertemos para minúsculas: modelos de embedding são treinados com texto natural,
-  e a limpeza agressiva típica de NLP clássico (bag-of-words) prejudica a busca semântica.
-- **Descarte de textos com menos de 10 caracteres** (3.199 casos). São quase todos elogios genéricos
-  ("Bom", "Ótimo", "Ok", "."), que não dizem *o que* agradou ao cliente e competiriam na busca com
-  comentários que citam aspectos concretos (entrega, qualidade, atendimento).
-
-### 3. Tratamento de valores ausentes
-
-| Campo | Situação | Tratamento |
-|---|---|---|
-| Título e comentário | 88% e 59% nulos | Concatenação do que existir; sem texto algum, a avaliação sai da base |
-| Categoria do produto | 1.389 pedidos sem categoria | Preenchida com `sem_categoria` |
-| Data de entrega | 2.965 pedidos sem data (cancelados, em trânsito etc.) | Classificados como `nao_entregue` |
-
-O ChromaDB não aceita metadados nulos, e um `assert` em `preparar_base()` garante que nenhum
-documento seja indexado com campo vazio.
-
-### 4. Organização dos documentos
-
-- **1 avaliação = 1 documento, sem chunking.** O maior comentário tem 208 caracteres, bem abaixo do
-  limite de entrada do modelo de embedding. Dividir textos tão curtos só fragmentaria o contexto.
-- **ID do documento = `review_id`.** Foram removidos 814 IDs repetidos (o mesmo review replicado em
-  pedidos comprados juntos), garantindo um identificador único e rastreável: é por ele que a
-  resposta cita as evidências usadas.
-- **Metadados por documento:**
-
-| Metadado | Tipo | Origem | Uso na recuperação |
-|---|---|---|---|
-| `nota` | int (1–5) | avaliação | Filtrar clientes satisfeitos ou insatisfeitos |
-| `categoria` | str | produto | Restringir a busca a uma categoria |
-| `data_compra` | str (AAAA-MM-DD) | pedido | Exibição nas evidências |
-| `ano_mes` | int (ex.: 201803) | pedido | Filtrar por período (permite `$gte`/`$lte`) |
-| `situacao_entrega` | `no_prazo` / `atrasado` / `nao_entregue` | pedido | Investigar experiências de entrega |
-
-- **Pedidos com mais de uma categoria** (727, cerca de 0,7%): usamos a categoria do item de maior
-  preço, considerado o produto principal. Isso também evita que o join com os itens duplique a
-  avaliação na base.
-- **Atraso:** comparação, em dias, entre a data de entrega ao cliente e a data prevista. Resultado:
-  33.105 entregues no prazo, 3.695 atrasados e 1.824 não entregues.
-
-**Como os metadados melhoram a recuperação:** a busca semântica sozinha encontra textos *parecidos*
-com a pergunta, mas não sabe se o cliente estava satisfeito ou se a entrega atrasou. Perguntas como
-"quais problemas os clientes insatisfeitos relatam?" ou "o que reclamam sobre entregas atrasadas?"
-ficam mais precisas quando a busca é restrita por `nota` ou `situacao_entrega`, porque o contexto
-enviado ao modelo deixa de misturar elogios e reclamações.
-
-### 5. Criação dos embeddings
-
-- **Modelo:** [`paraphrase-multilingual-MiniLM-L12-v2`](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2)
-  (sentence-transformers), executado localmente.
-- **Por que este modelo:**
-  - **Multilíngue:** as avaliações estão em português; um modelo treinado só em inglês recuperaria mal.
-  - **Leve e rápido em CPU:** vetores de 384 dimensões; a base completa é indexada em poucos minutos,
-    sem GPU.
-  - **Sem prefixos de consulta:** modelos como a família e5 exigem os prefixos `query:`/`passage:`.
-    Esquecê-los degrada a busca sem gerar erro, um risco desnecessário num pipeline mantido por
-    várias pessoas.
-  - **Local e gratuito:** não consome cota de API nem depende de chave para gerar a base, o que
-    facilita a reprodução da solução.
-- **Vetores normalizados** (`normalize_embeddings=True`), o que torna a similaridade de cosseno direta
-  e estável. A pergunta do usuário **precisa** ser vetorizada com o mesmo modelo e a mesma
-  normalização.
-
-### 6. Armazenamento e indexação
-
-- **ChromaDB em modo persistente local** (`data/chroma/`): banco vetorial embutido, que não exige
-  servidor nem conta em nuvem e suporta filtros por metadado na mesma consulta da busca semântica.
-- **Coleção `avaliacoes_olist` com distância de cosseno** (`hnsw:space = cosine`). O padrão do Chroma
-  é a distância euclidiana; com cosseno, as distâncias ficam numa escala fixa, o que torna o limiar
-  de "evidência insuficiente" interpretável.
-- **Índice HNSW**, a estrutura de busca aproximada de vizinhos mais próximos do Chroma, que responde
-  em milissegundos mesmo com dezenas de milhares de documentos.
-- **Reprodutibilidade:** o índice não é versionado no Git; ele é gerado do zero por
-  `src/indexar_base.py`, que recria a coleção a cada execução (rodar duas vezes não duplica
-  documentos). A opção `--amostra` usa `random_state=42`, então todos obtêm a mesma amostra.
-
-### Validação da recuperação
-
-Teste no índice completo ([`notebooks/02_teste_busca.ipynb`](notebooks/02_teste_busca.ipynb)), com
-distância de cosseno (quanto menor, mais parecido):
-
-| Pergunta | Distâncias (top 5) | Resultado |
-|---|---|---|
-| "produto chegou quebrado ou com defeito" (filtro `nota <= 2`) | 0,12 – 0,13 | Todos os textos relatam produto quebrado ou com defeito, em 5 categorias diferentes |
-| "qual é a capital da França?" (fora do escopo) | 0,52 – 0,65 | Textos genéricos, sem relação com a pergunta |
-
-A separação entre as duas faixas é a base do limiar usado pelo pipeline para recusar perguntas sem
-evidência suficiente. Na amostra de 2 mil documentos as distâncias são maiores (0,17–0,26 e
-0,70–0,75), por isso o limiar deve ser calibrado sempre no índice completo.
+Configure a chave apenas no `.env` local. Não a inclua em commits, logs ou capturas de tela.
+Os dados brutos e o índice são recriados localmente pelos comandos documentados no guia de
+instalação e não são versionados.
