@@ -83,7 +83,20 @@ python -m pytest -q
 
 Os testes não chamam Chroma, Gemini ou Kaggle, e não exigem uma chave válida.
 
-## 7. Fazer o teste ponta a ponta
+## 7. Executar a bateria exploratória (opcional)
+
+Com o índice construído e `GEMINI_API_KEY` configurada, execute:
+
+```powershell
+python tests/test_bateria_benchmark.py
+```
+
+O script faz até 15 chamadas ao Gemini e grava as respostas em
+`docs/resultado_benchmark.json`, substituindo o relatório existente. Isso não é necessário para
+rodar os testes automatizados. As limitações e a interpretação dos resultados estão em
+[benchmark.md](benchmark.md).
+
+## 8. Fazer o teste ponta a ponta
 
 ```powershell
 streamlit run app.py

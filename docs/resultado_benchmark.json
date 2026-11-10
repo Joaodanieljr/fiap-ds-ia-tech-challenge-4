@@ -1,0 +1,248 @@
+[
+  {
+    "id": "P01",
+    "categoria": "Enunciado",
+    "pergunta": "Quais são os principais motivos de insatisfação e problemas relatados pelos clientes?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base estritamente nas avaliações fornecidas, apresento uma análise qualitativa dos problemas e motivos de insatisfação relatados (não sendo possível extrair conclusões quantitativas ou percentuais devido ao número limitado de relatos fornecidos):\n\n1. **Falta de comunicação e suporte ao cliente:**\n   * Ausência de aviso prévio ou comunicação sobre atrasos na entrega [review_id=d7486b4da781b9d7dc5484ce65868081].\n   * Falta de resposta e de esclarecimentos (“não deu satisfação”) por parte da loja após o cliente entrar em contato para questionar sobre a não entrega [review_id=47f083e59650d4dfb6eb1997f4c1db64].\n\n2. **Problemas logísticos e de entrega:**\n   * Não entrega do produto adquirido [review_id=47f083e59650d4dfb6eb1997f4c1db64].\n   * Ocorrência de atrasos na entrega [review_id=d7486b4da781b9d7dc5484ce65868081].\n   * Imprecisão nos serviços prestados pelos Correios, apontada como um fator de risco para a satisfação do consumidor [review_id=d8389ffbfa76fe0367a8ad66135f95c9].\n\n3. **Gestão de estoque:**\n   * Venda de mercadorias que não estão disponíveis em estoque, gerando frustração ao cliente [review_id=39e3220236b9d66fb03ab618ed8e3477].\n\n*(Nota: O relato [review_id=7386b68489e00081752ae75cf5007c48] foi desconsiderado desta síntese por conter apenas observações positivas de recomendação, entrega e boa comunicação).*",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "d7486b4da781b9d7dc5484ce65868081",
+      "7386b68489e00081752ae75cf5007c48",
+      "47f083e59650d4dfb6eb1997f4c1db64",
+      "39e3220236b9d66fb03ab618ed8e3477",
+      "d8389ffbfa76fe0367a8ad66135f95c9"
+    ]
+  },
+  {
+    "id": "P02",
+    "categoria": "Enunciado",
+    "pergunta": "Quais reclamações e problemas aparecem com maior frequência nas avaliações relacionadas à entrega?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, as queixas relacionadas à entrega apresentam o seguinte panorama:\n\n### Conclusão Quantitativa (Maior Frequência)\n* **Atraso na entrega:** É o problema que aparece com maior frequência no conjunto de dados, sendo citado expressamente em 2 das 5 avaliações analisadas ([review_id=3716b631e340f9b637561eb1a11aa8a0], [review_id=69228c9ea08f4e0d8b591cc2309f4a5d]).\n\n---\n\n### Observações Qualitativas (Casos Únicos / Menor Frequência)\nAlém dos atrasos, surgiram outros problemas específicos relatados individualmente:\n\n* **Entrega incompleta / item faltante:** O cliente relata que o pedido foi entregue sem um dos itens comprados (\"Falta um pneu\") [review_id=81669c0e77ec52a88c027a1f91d03a46].\n* **Impossibilidade de entrega e falta de feedback:** O cliente aponta a impossibilidade de recebimento da entrega/produto e critica a falta de comunicação e retorno por parte da empresa [review_id=17bf199dad9351d93c2c7b35963b5e1a].\n\n*(Nota: A avaliação [review_id=fb01711def7fa4953b7516ab8e98da62] faz um elogio à \"eficiência na logistica da entrega\", portanto não se enquadra como reclamação).*",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "3716b631e340f9b637561eb1a11aa8a0",
+      "69228c9ea08f4e0d8b591cc2309f4a5d",
+      "17bf199dad9351d93c2c7b35963b5e1a",
+      "fb01711def7fa4953b7516ab8e98da62",
+      "81669c0e77ec52a88c027a1f91d03a46"
+    ]
+  },
+  {
+    "id": "P03",
+    "categoria": "Enunciado",
+    "pergunta": "O que os clientes mais elogiam em suas experiências de compra?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente no conjunto limitado de 5 avaliações fornecidas, as evidências são insuficientes para determinar conclusões quantitativas ou estatísticas sobre o que é \"mais\" elogiado em escala geral. \n\nNo entanto, a partir de uma **observação qualitativa** dos comentários disponíveis, os clientes elogiam os seguintes aspectos em suas experiências:\n\n1. **Qualidade e satisfação com o produto:**\n   - É mencionada a \"ótima qualidade\" dos produtos [review_id=c8a7db4cda86160a9be40b85f728692b].\n   - Há declarações de satisfação com o produto recebido [review_id=d5ea34029404af853abf3ff101d372f0] e recomendação do item [review_id=4058856ef8c22bd07311401448e92444].\n\n2. **A loja e a experiência de compra geral:**\n   - Clientes expressam que adoram comprar na loja [review_id=c8a7db4cda86160a9be40b85f728692b] e recomendam tanto a compra quanto o estabelecimento [review_id=76ffdb4b08f6061b7b9fd7978441de6f], [review_id=4058856ef8c22bd07311401448e92444].\n   - Há elogio à confiança transmitida pela loja [review_id=e79cb32fcd4452c2c88b3435297e01b3].\n\n3. **Processo e entrega:**\n   - É elogiado o \"andamento da compra\" [review_id=d5ea34029404af853abf3ff101d372f0].\n   - É destacada a \"qualidade nas entregas\" [review_id=e79cb32fcd4452c2c88b3435297e01b3].",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "76ffdb4b08f6061b7b9fd7978441de6f",
+      "c8a7db4cda86160a9be40b85f728692b",
+      "d5ea34029404af853abf3ff101d372f0",
+      "4058856ef8c22bd07311401448e92444",
+      "e79cb32fcd4452c2c88b3435297e01b3"
+    ]
+  },
+  {
+    "id": "P04",
+    "categoria": "Enunciado",
+    "pergunta": "Quais problemas e padrões podem ser identificados nas avaliações de clientes insatisfeitos?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas 5 avaliações fornecidas, é possível identificar os seguintes problemas e padrões:\n\n---\n\n### **Conclusões Quantitativas**\n* **Problemas com a qualidade geral:** Em **4 das 5 avaliações**, os clientes mencionam de forma direta que a qualidade do produto não atendeu às expectativas:\n  * Classificada como \"péssima\" em [review_id=c535fb13da25357afc4ce89ae58b8573].\n  * Classificada como \"baixa\" em [review_id=96b1d5f199ee9c1da0a952ffe8902cec].\n  * Apontada como \"inferior à esperada\" em [review_id=008396ce4c9d08d5371b4cd708058b2a].\n  * Descrita como algo que \"deixa a desejar\" em [review_id=e2ef15f7e4530d14985b64b27913f99b].\n* **Defeito no produto e falta de testes:** Em **1 das 5 avaliações**, o cliente relata um defeito no produto e aponta a necessidade de testes prévios pela empresa [review_id=4d2c24b096663970f1e4e3b6c5d1f1cf].\n\n---\n\n### **Observações Qualitativas**\n* **Padrão de quebra de expectativa de qualidade:** O padrão predominante entre os clientes insatisfeitos é a percepção negativa sobre a qualidade do produto entregue [review_id=c535fb13da25357afc4ce89ae58b8573], [review_id=96b1d5f199ee9c1da0a952ffe8902cec], [review_id=008396ce4c9d08d5371b4cd708058b2a], [review_id=e2ef15f7e4530d14985b64b27913f99b].\n* **Apontamento de falha de processo:** Há o registro de que o produto chegou avariado/com defeito, acompanhado da crítica de que a empresa deveria realizar testes antes do envio [review_id=4d2c24b096663970f1e4e3b6c5d1f1cf].\n\n---\n\n### **Limitação das Evidências**\nAs avaliações são extremamente breves e **não trazem evidências suficientes** para detalhar as causas raízes dos problemas (por exemplo, quais peças falharam, qual era o tipo de defeito ou em que aspecto específico a qualidade foi considerada baixa).",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "c535fb13da25357afc4ce89ae58b8573",
+      "96b1d5f199ee9c1da0a952ffe8902cec",
+      "008396ce4c9d08d5371b4cd708058b2a",
+      "4d2c24b096663970f1e4e3b6c5d1f1cf",
+      "e2ef15f7e4530d14985b64b27913f99b"
+    ]
+  },
+  {
+    "id": "P05",
+    "categoria": "Enunciado",
+    "pergunta": "Existem padrões recorrentes nas avaliações relacionadas à qualidade dos produtos?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas 5 avaliações fornecidas, é possível identificar os seguintes pontos sobre a qualidade dos produtos:\n\n### Observações Qualitativas\nExiste uma divisão nas impressões dos clientes, variando entre aprovação e insatisfação, embora nenhum deles detalhe os motivos específicos (como materiais, durabilidade ou defeitos) que justificam suas opiniões:\n\n* **Percepção positiva:** Há clientes que afirmam genericamente que os produtos têm qualidade [review_id=6700be3c2248ebbf8b39ba25e2760761] [review_id=f92a25a5f5c673edc2339e292237a155].\n* **Percepção crítica/negativa:** Outros clientes expressam descontentamento em diferentes graus:\n  * Qualidade vista como \"discutível\", mas tolerável em relação ao preço [review_id=2ecd3ae79fbf2701ffbd07c720d78fbe].\n  * Qualidade que \"deixa a desejar\" [review_id=e2ef15f7e4530d14985b64b27913f99b].\n  * Qualidade classificada como \"péssima\" [review_id=c535fb13da25357afc4ce89ae58b8573].\n\n### Conclusão Quantitativa e Suficiência dos Dados\n* **Contagem restrita:** Do total de 5 comentários analisados, 3 expressam ressalvas ou insatisfação com a qualidade [review_id=2ecd3ae79fbf2701ffbd07c720d78fbe], [review_id=e2ef15f7e4530d14985b64b27913f99b], [review_id=c535fb13da25357afc4ce89ae58b8573], enquanto 2 relatam uma percepção positiva [review_id=6700be3c2248ebbf8b39ba25e2760761], [review_id=f92a25a5f5c673edc2339e292237a155].\n* **Insuficiência de evidências:** O padrão recorrente limita-se à menção direta do termo \"qualidade\", oscilando entre bom e ruim. As evidências **não são suficientes** para determinar padrões aprofundados, causas-raiz ou conclusões estatísticas representativas, devido à brevidade dos textos e ao volume reduzido da amostra.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "6700be3c2248ebbf8b39ba25e2760761",
+      "2ecd3ae79fbf2701ffbd07c720d78fbe",
+      "f92a25a5f5c673edc2339e292237a155",
+      "e2ef15f7e4530d14985b64b27913f99b",
+      "c535fb13da25357afc4ce89ae58b8573"
+    ]
+  },
+  {
+    "id": "P06",
+    "categoria": "Enunciado",
+    "pergunta": "Quais evidências sustentam a conclusão de que existem atrasos na entrega dos pedidos?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base estritamente nas avaliações fornecidas, as evidências sobre atrasos na entrega dividem-se da seguinte forma:\n\n### Evidência direta de atraso (Observação Qualitativa)\n* Há apenas **uma** menção explícita confirmando a ocorrência de atraso na entrega:\n  * O cliente relata textualmente: *\"Houve atraso na entrega do produto, porém os correios estavam com problemas\"* [review_id=2c8911a9be8e483651ad8c1f614c152a].\n\n### Avaliações que não comprovam atraso\nAs demais avaliações tratam de insatisfação com a extensão do prazo ou a lentidão percebida, mas indicam que os prazos estipulados foram (ou continuam sendo) cumpridos:\n* Clientes afirmam expressamente que o produto chegou **dentro do prazo**, embora considerem o tempo de espera longo ou demorado [review_id=33d0f964a936b4f618c992fed46d553f], [review_id=29a8161013c85d3c2c42050d4b535294].\n* Um cliente apenas sugere que o prazo de entrega poderia ser menor [review_id=152e667120bd33933b44c745da0a768e].\n* Outro cliente relata problemas com aviso indevido de devolução, mas declara que ainda continua aguardando o produto **dentro do prazo informado** [review_id=a38a071b913a47b0990806e07409d454].\n\n### Conclusão Quantitativa\nDo ponto de vista quantitativo, **as evidências são insuficientes** para sustentar a conclusão de que existem atrasos generalizados ou frequentes nos pedidos. Há apenas um relato isolado de atraso efetivo [review_id=2c8911a9be8e483651ad8c1f614c152a], enquanto a maioria dos clientes aponta que as entregas ocorreram ou estão ocorrendo dentro do prazo prometido.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "2c8911a9be8e483651ad8c1f614c152a",
+      "33d0f964a936b4f618c992fed46d553f",
+      "152e667120bd33933b44c745da0a768e",
+      "29a8161013c85d3c2c42050d4b535294",
+      "a38a071b913a47b0990806e07409d454"
+    ]
+  },
+  {
+    "id": "P07",
+    "categoria": "Metadados",
+    "pergunta": "Quais são as principais reclamações nas avaliações com nota 1?",
+    "filtro_aplicado": {
+      "nota": 1
+    },
+    "resposta_gerada": "Com base estritamente nas 5 avaliações fornecidas (assumindo que compõem o conjunto de avaliações com nota 1), as reclamações identificadas dividem-se nos seguintes temas:\n\n1. **Produto danificado, quebrado ou com defeito:**\n   - Há relatos de recebimento de produtos avariados ou com defeito de fábrica, acompanhados de comentários sobre a necessidade de testes prévios pela empresa.\n   - *Evidências:* [review_id=a85e07c6d948cbe72442e8b523a6b6a4], [review_id=4d2c24b096663970f1e4e3b6c5d1f1cf] e [review_id=ab227566e562bbad783be39fff2ecf1b].\n\n2. **Não recebimento do produto e problemas na entrega:**\n   - Clientes apontam a impossibilidade de entrega ou o fato de serem solicitados a avaliar um item que ainda não receberam.\n   - *Evidências:* [review_id=17bf199dad9351d93c2c7b35963b5e1a] e [review_id=647180e0d3af1055d95f758f75e67593].\n\n3. **Falhas no suporte, falta de comunicação e recusa de devolução:**\n   - Reclamações sobre a ausência de feedback/resposta diante de problemas na entrega ou produto avariado, além de relato sobre a empresa não aceitar a devolução do item danificado.\n   - *Evidências:* [review_id=a85e07c6d948cbe72442e8b523a6b6a4], [review_id=17bf199dad9351d93c2c7b35963b5e1a] e [review_id=ab227566e562bbad783be39fff2ecf1b].\n\n---\n*Nota metodológica:* Os apontamentos acima constituem uma **observação qualitativa** restrita ao recorte das 5 avaliações enviadas. As evidências apresentadas não contêm dados suficientes para sustentar **conclusões quantitativas** ou taxas de frequência que possam ser generalizadas para o volume total de clientes.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "a85e07c6d948cbe72442e8b523a6b6a4",
+      "17bf199dad9351d93c2c7b35963b5e1a",
+      "647180e0d3af1055d95f758f75e67593",
+      "4d2c24b096663970f1e4e3b6c5d1f1cf",
+      "ab227566e562bbad783be39fff2ecf1b"
+    ]
+  },
+  {
+    "id": "P08",
+    "categoria": "Metadados",
+    "pergunta": "O que os clientes mais elogiam nas avaliações que deram nota 5?",
+    "filtro_aplicado": {
+      "nota": 5
+    },
+    "resposta_gerada": "Com base estritamente nas avaliações fornecidas, cabe ressaltar inicialmente que os textos não trazem o registro numérico explícito da \"nota 5\", tratando-se de uma inferência com base no teor positivo dos comentários disponibilizados.\n\nA partir da análise do conjunto de 5 avaliações, os principais pontos elogiados dividem-se em:\n\n### 1. Qualidade e Conformidade do Produto (Aspecto quantitativamente mais citado)\nEm termos quantitativos, este foi o aspecto mais recorrente, citado em 4 das 5 avaliações:\n- **Qualidade e acabamento:** Os clientes destacam que o item é um \"Produto de qualidade\" [review_id=64dfafb3ac915bb3d10505bca04e519a], de \"ótima qualidade\" [review_id=7ddde774ae9d904cc3901a84fd443364] e que \"é bom, bonito tem bom acabamento\" [review_id=ad4a826bbf5438056ecd19312f7dd613].\n- **Fidelidade ao anúncio:** Foi mencionado que \"o produto chegou do jeito anunciado\" [review_id=573ac8bcbe68c01df39f44f3d86ab625].\n\n### 2. Rapidez na Entrega\nPresente em 2 das 5 avaliações:\n- Os clientes elogiaram o recebimento antes da data esperada, com menções a \"recebi antes do prazo\" [review_id=64dfafb3ac915bb3d10505bca04e519a] e \"chegou bem antes do previsto chegou eh 5 dias corridos\" [review_id=7ddde774ae9d904cc3901a84fd443364].\n\n### 3. Atendimento da Loja\nComo observação qualitativa pontual (apenas 1 menção):\n- Um cliente parabenizou a loja citando o atendimento: \"parabéns a loja muito o atendimento\" [review_id=7ddde774ae9d904cc3901a84fd443364].\n\n### 4. Recomendação e Elogios Gerais\n- Dois clientes reforçaram a satisfação recomendando a compra (\"recomendo a todos\" [review_id=573ac8bcbe68c01df39f44f3d86ab625] e \"recomendo a qualque pessoas adquirir o produto\" [review_id=7ddde774ae9d904cc3901a84fd443364]).\n- Há registros de termos genéricos positivos, como \"Top!!!\" [review_id=64dfafb3ac915bb3d10505bca04e519a] e \"Avaliação boa\" [review_id=3e4051347aa31cd748eb6b5ca9283cd7].",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "3e4051347aa31cd748eb6b5ca9283cd7",
+      "573ac8bcbe68c01df39f44f3d86ab625",
+      "64dfafb3ac915bb3d10505bca04e519a",
+      "ad4a826bbf5438056ecd19312f7dd613",
+      "7ddde774ae9d904cc3901a84fd443364"
+    ]
+  },
+  {
+    "id": "P09",
+    "categoria": "Metadados",
+    "pergunta": "Quais são os principais relatos de insatisfação na categoria perfumaria?",
+    "filtro_aplicado": {
+      "categoria": "perfumaria"
+    },
+    "resposta_gerada": "Com base estritamente nas avaliações fornecidas, é importante destacar que a amostra é reduzida (apenas 5 comentários), o que permite apenas **observações qualitativas** pontuais, e não uma **conclusão quantitativa** ou estatística sobre os problemas gerais da categoria.\n\nEntre os registros analisados, os relatos de insatisfação identificados estão relacionados a problemas logísticos e operacionais, e não à qualidade intrínseca do perfume:\n\n1. **Atraso na entrega:** Houve relato de insatisfação quanto ao tempo de transporte, registrando-se 15 dias de atraso na entrega de um perfume, apesar de o produto ter sido avaliado como original e muito bom [review_id=b301608d971dcc67edd85c71a4677be5].\n2. **Dificuldades no rastreamento/entrega:** Um cliente relatou que dois produtos comprados foram marcados com o status de \"dificuldade na entrega\" segundo o rastreamento dos Correios [review_id=fe5c833752953fed3209646f1f63b53c].\n3. **Falha no site/duplicação de pedidos:** Foi relatada uma falha no site que resultou no recebimento de dois pedidos iguais (embora o cliente tenha amenizado a situação dizendo \"mas tá de boas\") [review_id=79b10e7b1fe8f462b8fb61bdf60118e0].\n\nAs demais avaliações tratam de aspectos positivos sobre a embalagem/serviço [review_id=2d1442dfa311ea3a74e7745edc8d3744] e cheiro agradável [review_id=c0c8b2665b7bb77745c3a3dbcdb0fa5d], sem conter reclamações.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "b301608d971dcc67edd85c71a4677be5",
+      "c0c8b2665b7bb77745c3a3dbcdb0fa5d",
+      "2d1442dfa311ea3a74e7745edc8d3744",
+      "fe5c833752953fed3209646f1f63b53c",
+      "79b10e7b1fe8f462b8fb61bdf60118e0"
+    ]
+  },
+  {
+    "id": "P10",
+    "categoria": "Metadados",
+    "pergunta": "Quais problemas de entrega foram relatados nas compras do ano de 2017?",
+    "filtro_aplicado": {
+      "$and": [
+        {
+          "ano_mes": {
+            "$gte": 201701
+          }
+        },
+        {
+          "ano_mes": {
+            "$lte": 201712
+          }
+        }
+      ]
+    },
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, **as evidências são insuficientes para relatar problemas de entrega em compras do ano de 2017**.\n\n* **Compras explicitamente identificadas em 2017:** A única avaliação que menciona o ano de 2017 é a [review_id=3aa59f2b53a935ed8fa3a56ba0adf20e], a qual relata que o produto foi entregue adiantado (compra no fim de novembro de 2017, com previsão para 22/12/2017 e entrega em 14/12/2017), não havendo registro de problemas.\n* **Problemas de entrega relatados (sem datação):** Há uma observação qualitativa indicando atraso na entrega decorrente de problemas com os Correios em [review_id=2c8911a9be8e483651ad8c1f614c152a] (*\"Houve atraso na entrega do produto, porém os correios estavam com problemas\"*), contudo o texto não informa o ano da compra, sendo impossível atribuir quantitativa ou conclusivamente esse relato a 2017. \n* As demais avaliações ([review_id=a17167de7adc918714639a750d4f6af9], [review_id=c9cc5413f89f383869391990d9a764d0] e [review_id=822f239dac4cfd170caed88728ae4f51]) também não possuem indicação de ano e relatam entregas satisfatórias ou no prazo.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "3aa59f2b53a935ed8fa3a56ba0adf20e",
+      "a17167de7adc918714639a750d4f6af9",
+      "c9cc5413f89f383869391990d9a764d0",
+      "822f239dac4cfd170caed88728ae4f51",
+      "2c8911a9be8e483651ad8c1f614c152a"
+    ]
+  },
+  {
+    "id": "P11",
+    "categoria": "Metadados",
+    "pergunta": "O que os clientes reclamam em pedidos com entrega atrasada?",
+    "filtro_aplicado": {
+      "situacao_entrega": "atrasado"
+    },
+    "resposta_gerada": "Com base exclusivamente nas 5 avaliações fornecidas, apresento a análise qualitativa das queixas dos clientes relacionadas a atrasos ou problemas na entrega. \n\n*(Nota metodológica: Do ponto de vista **quantitativo**, o volume de apenas 5 avaliações não permite inferir frequências relativas, proporções estatísticas ou tendências gerais da base de clientes. Tratam-se de **observações qualitativas** identificadas nesta amostra restrita).*\n\nOs clientes relatam as seguintes queixas:\n\n1. **Tempo de espera e descumprimento de prazos:**\n   - Reclamações diretas sobre o prazo de entrega não ser cumprido ou ter expirado [review_id=9a1ca7ec780a6d55c318fc6eebd9ea2a], [review_id=dc4592199380713133576d661570040a].\n   - Queixas sobre a espera ser \"exagerada\" [review_id=1d686db6ccb45c5d2e5d3c2ede9f4874] ou sobre o prazo já ser excessivamente elástico antes mesmo do atraso [review_id=9a1ca7ec780a6d55c318fc6eebd9ea2a].\n   - Frustração por ainda estar aguardando a chegada do item [review_id=bbe45b8782c123d652f8ed8563928efc].\n\n2. **Falta de comunicação e ausência de suporte da empresa:**\n   - Ausência de contato proativo da empresa para informar sobre o atraso, obrigando o cliente a telefonar e esperar por informações [review_id=9a1ca7ec780a6d55c318fc6eebd9ea2a].\n   - Falta de retorno aos contatos do cliente, com a empresa não respondendo às mensagens enviadas [review_id=dc4592199380713133576d661570040a].\n\n3. **Insatisfação com o serviço logístico / Correios:**\n   - Desapontamento explícito com o serviço de entrega [review_id=bbe45b8782c123d652f8ed8563928efc].\n   - Apontamento de que os Correios \"não são precisos em seus serviços\", colocando em risco a satisfação do cliente com o fornecedor [review_id=d8389ffbfa76fe0367a8ad66135f95c9].\n\n4. **Escalação de conflito (Acionamento de órgãos de proteção):**\n   - Intenção explícita de acionar o Procon caso o pedido não seja entregue no prazo estipulado pelo comprador [review_id=9a1ca7ec780a6d55c318fc6eebd9ea2a].",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "1d686db6ccb45c5d2e5d3c2ede9f4874",
+      "9a1ca7ec780a6d55c318fc6eebd9ea2a",
+      "bbe45b8782c123d652f8ed8563928efc",
+      "d8389ffbfa76fe0367a8ad66135f95c9",
+      "dc4592199380713133576d661570040a"
+    ]
+  },
+  {
+    "id": "P12",
+    "categoria": "Fora do Escopo",
+    "pergunta": "Qual é a política de reembolso para voos internacionais e passagens aéreas na Olist?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, as evidências **não são suficientes** para responder à pergunta. \n\nNenhum dos relatos menciona passagens aéreas, voos internacionais ou qualquer política de reembolso relacionada a esse tipo de serviço. \n\nDe forma estritamente qualitativa, o que se observa nas avaliações são apenas solicitações pontuais de devolução de dinheiro decorrentes do não recebimento ou falta de atualização sobre a entrega de produtos físicos [review_id=4d7293ad5e15209e5caccd76f22b1422, review_id=adb435a541b0744689eda06e1cf9f8ac], além de relatos sobre atrasos na entrega [review_id=3716b631e340f9b637561eb1a11aa8a0, review_id=69228c9ea08f4e0d8b591cc2309f4a5d, review_id=486855f281755a928a35b13d9ad336f1].",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "4d7293ad5e15209e5caccd76f22b1422",
+      "3716b631e340f9b637561eb1a11aa8a0",
+      "69228c9ea08f4e0d8b591cc2309f4a5d",
+      "486855f281755a928a35b13d9ad336f1",
+      "adb435a541b0744689eda06e1cf9f8ac"
+    ]
+  },
+  {
+    "id": "P13",
+    "categoria": "Fora do Escopo",
+    "pergunta": "Quem é o atual CEO da Olist e qual o faturamento da empresa em 2025?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, as evidências não são suficientes para responder a esta pergunta. Nenhuma das avaliações recuperadas contém informações sobre quem é o atual CEO da Olist ou sobre o faturamento da empresa em 2025.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "aced6e6e204980703e6f147adec652bf",
+      "e788603bff8a6feec6a514ed6659e28e",
+      "67bad58c96a541247040aa72afa18b37",
+      "eccb6dedf8c3cb0213587bc3bd247065",
+      "b1f3eb5c41b4bbc10bc56c31e0b0ba71"
+    ]
+  },
+  {
+    "id": "P14",
+    "categoria": "Fora do Escopo",
+    "pergunta": "Qual é a garantia para aspiradores de pó Electrolux comprados com cupom?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, as evidências não são suficientes para responder à pergunta. \n\nNenhum dos relatos recuperados ([review_id=f30f0034384b3a176508296ea0ab302c], [review_id=396e26da77b10734f3f8b5d5515fef4e], [review_id=537af341b003976eae54d043d0fa121d], [review_id=8a3e75928427af464f981d8e99ed6657], [review_id=3eca921db1a63da2841dca0bc2e3e079]) traz qualquer informação referente a prazos ou termos de garantia, aspiradores de pó da marca Electrolux ou condições de compras realizadas com cupom.",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "f30f0034384b3a176508296ea0ab302c",
+      "396e26da77b10734f3f8b5d5515fef4e",
+      "537af341b003976eae54d043d0fa121d",
+      "8a3e75928427af464f981d8e99ed6657",
+      "3eca921db1a63da2841dca0bc2e3e079"
+    ]
+  },
+  {
+    "id": "P15",
+    "categoria": "Fora do Escopo",
+    "pergunta": "Como faço para atualizar meu endereço de entrega pelo aplicativo da Olist?",
+    "filtro_aplicado": null,
+    "resposta_gerada": "Com base exclusivamente nas avaliações fornecidas, as evidências não são suficientes para responder a essa pergunta. \n\nNenhum dos relatos traz instruções, procedimentos ou menções sobre como atualizar o endereço de entrega ou sobre o uso do aplicativo da Olist. As avaliações tratam apenas de dificuldades de contato, atrasos na entrega e devoluções/cancelamentos [review_id=5085bc489aa6b58a29c4f922d59ff826, review_id=c7bd0f7e68f485c80c51a01def7172ee, review_id=dc4592199380713133576d661570040a, review_id=8cec9a9b9e2671c1932bc236e43345f6, review_id=2708b1adb1f115fa8bc46c09adc07b3d].",
+    "qtd_evidencias": 5,
+    "evidencias_review_ids": [
+      "5085bc489aa6b58a29c4f922d59ff826",
+      "c7bd0f7e68f485c80c51a01def7172ee",
+      "dc4592199380713133576d661570040a",
+      "8cec9a9b9e2671c1932bc236e43345f6",
+      "2708b1adb1f115fa8bc46c09adc07b3d"
+    ]
+  }
+]
