@@ -66,6 +66,56 @@ def test_pipeline_returns_answer_and_evidence() -> None:
     assert generator.calls == 1
 
 
+def test_pipeline_abstains_when_all_evidence_is_too_distant() -> None:
+    evidence = [
+        Evidence(review_id="review-far", text="Sem relação.", distance=0.61),
+        Evidence(review_id="review-close", text="Entrega atrasada.", distance=0.35),
+    ]
+    generator = FakeGenerator()
+    pipeline = RagPipeline(
+        FakeRetriever(evidence),
+        generator,
+        max_distance=0.4,
+    )
+
+    result = pipeline.answer("Houve problema com entrega?")
+
+    assert result.abstained is False
+    assert [item.review_id for item in result.evidence] == ["review-close"]
+    assert generator.calls == 1
+
+
+def test_pipeline_abstains_without_generating_when_no_evidence_passes_threshold() -> None:
+    evidence = [Evidence(review_id="review-far", text="Sem relação.", distance=0.61)]
+    generator = FakeGenerator()
+    pipeline = RagPipeline(
+        FakeRetriever(evidence),
+        generator,
+        max_distance=0.4,
+    )
+
+    result = pipeline.answer("Pergunta fora do escopo")
+
+    assert result.abstained is True
+    assert result.evidence == []
+    assert generator.calls == 0
+
+
+def test_pipeline_rejects_evidence_without_distance_when_threshold_is_enabled() -> None:
+    evidence = [Evidence(review_id="review-unknown", text="Distancia ausente.")]
+    generator = FakeGenerator()
+    pipeline = RagPipeline(
+        FakeRetriever(evidence),
+        generator,
+        max_distance=0.4,
+    )
+
+    result = pipeline.answer("Pergunta sem distancia")
+
+    assert result.abstained is True
+    assert generator.calls == 0
+
+
 def test_chroma_retriever_uses_index_embedding_contract(monkeypatch) -> None:
     query_result = {
         "ids": [["review-123"]],

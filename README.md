@@ -48,12 +48,16 @@ representam uma métrica de precisão/recall nem uma calibração da abstinênci
 - Validado localmente com índice de amostra de 2.000 reviews: busca semântica, filtros Chroma e
   uma chamada real ao Gemini com citações correspondentes aos reviews recuperados.
 - Os testes automatizados usam doubles para os serviços externos e não consomem a API Gemini.
-- A abstinência atual ocorre quando a busca retorna zero resultados. Ainda não há limiar calibrado
-  para rejeitar resultados semanticamente fracos.
+- O limite exploratório `RETRIEVAL_MAX_DISTANCE=0.408` foi medido no índice completo de 38.624
+  reviews. No conjunto de 15 perguntas, ele abstém nas quatro fora de escopo, mas também numa
+  pergunta válida sobre reviews com nota 1 (P07). O `.env.example` deixa o limite vazio por padrão;
+  veja [a calibração e seus limites](docs/benchmark.md) antes de ativá-lo.
+- Sem esse limite, a abstinência ocorre quando a busca não retorna resultados. A distância isolada
+  não substitui a revisão de evidências nem garante que a resposta seja correta.
 - O smoke test não substitui a avaliação estruturada da bateria de perguntas nem a validação do
   índice completo. Não use a amostra para tirar conclusões quantitativas sobre todos os clientes.
-- O benchmark registra cinco resultados por consulta, inclusive nas perguntas fora do escopo; o
-  pipeline ainda não rejeita resultados semanticamente fracos com um limiar calibrado.
+- O limite foi avaliado em somente 15 perguntas; precisa ser testado com perguntas independentes e
+  a cobertura observada não representa garantia para novas consultas.
 - Dados, índices, credenciais e configurações locais não fazem parte do repositório.
 
 ## Estrutura do repositório

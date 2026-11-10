@@ -51,11 +51,15 @@ As regras e estatísticas de preparação estão em [data-preparation.md](data-p
 
 - Cada documento é identificado pelo `review_id`; o ID é enviado junto ao texto no contexto do
   gerador e exibido como evidência na interface.
-- O pipeline se abstém quando não há documentos recuperados.
-- Ainda não há limiar calibrado para identificar documentos recuperados mas irrelevantes. A
-  calibração requer uma bateria rotulada de perguntas e julgamentos de relevância.
-- A validação ponta a ponta feita até agora cobre uma pergunta no índice de amostra de 2.000
-  reviews; o índice completo e uma avaliação sistemática ainda precisam ser validados.
+- O pipeline se abstém quando não há documentos recuperados. Também pode receber
+  `RETRIEVAL_MAX_DISTANCE` para remover evidências acima de um limite de distância cosine antes da
+  geração. O valor exploratório `0.408` foi medido no índice completo; não é ativado por padrão e
+  não deve ser usado com a amostra de desenvolvimento.
+- A distância é um sinal aproximado de relevância, não um julgamento semântico. A calibração requer
+  perguntas rotuladas e validação independente; veja [benchmark.md](benchmark.md).
+- A busca e a calibração por distância foram exercitadas no índice completo de 38.624 reviews. A
+  validação ponta a ponta com Gemini documentada cobre uma pergunta no índice de amostra de 2.000;
+  ainda falta avaliar a geração com o índice completo e perguntas independentes.
 - A amostra serve para desenvolvimento e demonstração, não para estimar quantitativamente a
   distribuição de opiniões de toda a base.
 

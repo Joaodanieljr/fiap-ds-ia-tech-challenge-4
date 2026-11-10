@@ -75,6 +75,17 @@ Para construir o índice completo, rode `python src/indexar_base.py` sem `--amos
 recria a coleção toda vez:** criar uma amostra ou um índice completo substitui a coleção anterior.
 Não execute esse comando se quiser preservar outro índice local.
 
+Para manter a amostra e criar o índice completo em separado (por exemplo, para calibrar a
+abstinência), use `python src/indexar_base.py --persist-directory .\data\chroma_full`. A coleção
+padrão continua sendo `avaliacoes_olist`; o caminho correspondente deve ser configurado em
+`CHROMA_PERSIST_DIRECTORY` quando esse índice for usado pela aplicação.
+
+O `.env.example` deixa `RETRIEVAL_MAX_DISTANCE` vazio para que a amostra rode sem aplicar um limite
+calibrado em outro índice. Para testar o limite, construa o índice completo, configure
+`CHROMA_PERSIST_DIRECTORY` para o diretório desse índice e defina `RETRIEVAL_MAX_DISTANCE=0.408`.
+Esse valor é exploratório e pode causar abstinência em perguntas válidas; veja
+[benchmark.md](benchmark.md).
+
 ## 6. Executar os testes automatizados
 
 ```powershell
@@ -121,5 +132,6 @@ mostrado na resposta está entre as evidências expandidas na tela.
 - **Download Kaggle falhou:** confira a conexão e se o `kagglehub` exige autenticação.
 
 Uma pergunta fora do domínio, como “Qual é a capital da França?”, pode ser usada para observar os
-limites do sistema. No estado atual, o pipeline se abstém se a busca retornar zero reviews, mas
-ainda não tem limiar de distância calibrado para rejeitar resultados irrelevantes.
+limites do sistema. Sem `RETRIEVAL_MAX_DISTANCE`, o pipeline se abstém se a busca retornar zero
+reviews; com o limite configurado, também rejeita evidências que estejam acima da distância
+permitida.

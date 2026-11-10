@@ -21,6 +21,7 @@ if st.button("Buscar resposta", type="primary", disabled=not question.strip()):
             retriever=ChromaReviewRetriever(settings),
             generator=GeminiAnswerGenerator(settings),
             top_k=settings.retrieval_top_k,
+            max_distance=settings.retrieval_max_distance,
         )
         with st.spinner("Buscando evidencias e preparando resposta..."):
             result = pipeline.answer(question.strip())
@@ -29,7 +30,7 @@ if st.button("Buscar resposta", type="primary", disabled=not question.strip()):
     else:
         st.markdown(result.text)
         if result.abstained:
-            st.info("Resposta abstida: a busca nao retornou evidencias.")
+            st.info("Resposta abstida: nao foram encontradas evidencias suficientes.")
         for item in result.evidence:
             with st.expander(f"Review {item.review_id}"):
                 st.write(item.text)

@@ -1,0 +1,396 @@
+{
+  "executado_em_utc": "2026-11-10T19:59:35.912620+00:00",
+  "indice": {
+    "diretorio": ".\\data\\chroma_full_calibration",
+    "colecao": "avaliacoes_olist",
+    "quantidade_documentos": 38624,
+    "top_k": 5,
+    "modelo_embedding": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "distancia": "cosine"
+  },
+  "criterio_exploratorio": {
+    "perguntas_fora_escopo_separaveis_por_distancia": false,
+    "maior_menor_distancia_em_escopo": 0.4268198013305664,
+    "menor_menor_distancia_fora_escopo": 0.4086381793022156,
+    "limite_candidato": null,
+    "limite_conservador_sem_falso_aceite_nesta_bateria": 0.408,
+    "resultado_limite_conservador": {
+      "perguntas_em_escopo_respondidas": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P08",
+        "P09",
+        "P10",
+        "P11"
+      ],
+      "perguntas_em_escopo_abstidas": [
+        "P07"
+      ],
+      "perguntas_fora_escopo_respondidas": [],
+      "perguntas_fora_escopo_abstidas": [
+        "P12",
+        "P13",
+        "P14",
+        "P15"
+      ]
+    },
+    "observacao": "O limite é apenas um candidato exploratório derivado destas 15 perguntas; precisa de validação independente antes de ser tratado como garantia. O limite conservador prioriza rejeitar perguntas fora do escopo e pode abster perguntas válidas."
+  },
+  "resultados": [
+    {
+      "id": "P01",
+      "categoria": "Enunciado",
+      "pergunta": "Quais são os principais motivos de insatisfação e problemas relatados pelos clientes?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "b369ba482fb3837283d080b0a5574fb7",
+        "db2ad68a772d476d92bae6d8c9a8eb18",
+        "48dfb09da10ec86135fedeb9941364c2",
+        "c947fcd9fadd5dd3168b0cd7bbf0283e",
+        "c84b5bf0da038c4776c152096916ce6b"
+      ],
+      "distancias": [
+        0.2831460237503052,
+        0.31478798389434814,
+        0.3154453635215759,
+        0.3438448905944824,
+        0.37062180042266846
+      ],
+      "menor_distancia": 0.2831460237503052
+    },
+    {
+      "id": "P02",
+      "categoria": "Enunciado",
+      "pergunta": "Quais reclamações e problemas aparecem com maior frequência nas avaliações relacionadas à entrega?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "18fd8314a11f9a00cb85e8ef9aa70042",
+        "c82e20ab06764504caa5a5754ba2050a",
+        "db2ad68a772d476d92bae6d8c9a8eb18",
+        "949eca021ed60d00a2d2bda3cc686d4d",
+        "256e445ddba830565ad576854f406761"
+      ],
+      "distancias": [
+        0.3409215211868286,
+        0.3669225573539734,
+        0.37494415044784546,
+        0.3754056692123413,
+        0.38328325748443604
+      ],
+      "menor_distancia": 0.3409215211868286
+    },
+    {
+      "id": "P03",
+      "categoria": "Enunciado",
+      "pergunta": "O que os clientes mais elogiam em suas experiências de compra?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "eebfdf7cf3787d9fac235a1faf1c4323",
+        "38ff9e5da94f8a6020f2a237aeac77f9",
+        "d616c8b2fc1e9b6e150b77e78967a4ea",
+        "77c3c70fb51448c1490f4dc43a2b2e58",
+        "52300a5e6997431d0597e820015ec8ff"
+      ],
+      "distancias": [
+        0.21518254280090332,
+        0.2164996862411499,
+        0.2259119153022766,
+        0.23950791358947754,
+        0.2401784062385559
+      ],
+      "menor_distancia": 0.21518254280090332
+    },
+    {
+      "id": "P04",
+      "categoria": "Enunciado",
+      "pergunta": "Quais problemas e padrões podem ser identificados nas avaliações de clientes insatisfeitos?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "db2ad68a772d476d92bae6d8c9a8eb18",
+        "b369ba482fb3837283d080b0a5574fb7",
+        "48dfb09da10ec86135fedeb9941364c2",
+        "c84b5bf0da038c4776c152096916ce6b",
+        "190b01af91fb754443307e59209136d6"
+      ],
+      "distancias": [
+        0.34773749113082886,
+        0.3747331500053406,
+        0.3917018175125122,
+        0.39262068271636963,
+        0.3942296504974365
+      ],
+      "menor_distancia": 0.34773749113082886
+    },
+    {
+      "id": "P05",
+      "categoria": "Enunciado",
+      "pergunta": "Existem padrões recorrentes nas avaliações relacionadas à qualidade dos produtos?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "541b0f1c04cf05d526b766f0d7a799f0",
+        "396ca63a1ddba5ae532c35316166b90f",
+        "0cd25123ee693761394d2487b0fa3cc4",
+        "e5ffa47e3f2e6fd7842666ed9f857342",
+        "cef052586f5bf37e1d8e7b2c881a78cc"
+      ],
+      "distancias": [
+        0.2533071041107178,
+        0.25727784633636475,
+        0.26591789722442627,
+        0.26775288581848145,
+        0.27472835779190063
+      ],
+      "menor_distancia": 0.2533071041107178
+    },
+    {
+      "id": "P06",
+      "categoria": "Enunciado",
+      "pergunta": "Quais evidências sustentam a conclusão de que existem atrasos na entrega dos pedidos?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "93070d6a76f6affb41c1e64d7fc6230f",
+        "dd6e0f7168d75cd78769333f7630a036",
+        "4aadd830f69552d605e52eca8b9d2a87",
+        "4839daa67e1328de5155d092c2614d21",
+        "e5db1be774e0342f0998a113baf22db5"
+      ],
+      "distancias": [
+        0.23938298225402832,
+        0.27784794569015503,
+        0.28576576709747314,
+        0.2866278290748596,
+        0.30031317472457886
+      ],
+      "menor_distancia": 0.23938298225402832
+    },
+    {
+      "id": "P07",
+      "categoria": "Metadados",
+      "pergunta": "Quais são as principais reclamações nas avaliações com nota 1?",
+      "filtro_aplicado": {
+        "nota": 1
+      },
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "e6440fb40ebd6225a3dedb2e1d6e7220",
+        "89e36888c39685c524a74270824e9fdb",
+        "6698b8cb16ed759ce466fefa70c941b7",
+        "45d1572f5bfca2707ae6748265f8169a",
+        "c073a54bbfbbd0282b00f3d50ccdd00f"
+      ],
+      "distancias": [
+        0.4268198013305664,
+        0.43792009353637695,
+        0.4394087791442871,
+        0.4823487401008606,
+        0.491222620010376
+      ],
+      "menor_distancia": 0.4268198013305664
+    },
+    {
+      "id": "P08",
+      "categoria": "Metadados",
+      "pergunta": "O que os clientes mais elogiam nas avaliações que deram nota 5?",
+      "filtro_aplicado": {
+        "nota": 5
+      },
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "6ec96c95472b4c4fc6e2a5c6c4069b1e",
+        "cd759224452679c3d27330a30c0b23c9",
+        "45a301e140af06e6d42ab5be8210795f",
+        "b0c43abdbccddf34dee5f07b5f92f369",
+        "139d5416c4599a19930485d2d749a65e"
+      ],
+      "distancias": [
+        0.26358163356781006,
+        0.3589189648628235,
+        0.3593132495880127,
+        0.3607734441757202,
+        0.372694730758667
+      ],
+      "menor_distancia": 0.26358163356781006
+    },
+    {
+      "id": "P09",
+      "categoria": "Metadados",
+      "pergunta": "Quais são os principais relatos de insatisfação na categoria perfumaria?",
+      "filtro_aplicado": {
+        "categoria": "perfumaria"
+      },
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "37b3eda5c02bb913377f4f74be80e2f6",
+        "e144681952b0736e09fc0643ffb909ce",
+        "ef96505fe73485cccd859ff2e262b897",
+        "90126cabc13d5190e1911de00158db59",
+        "1278c8af9a442c6b48b8b5c42ec88aa3"
+      ],
+      "distancias": [
+        0.3650953769683838,
+        0.39255350828170776,
+        0.4108024835586548,
+        0.41337382793426514,
+        0.4161421060562134
+      ],
+      "menor_distancia": 0.3650953769683838
+    },
+    {
+      "id": "P10",
+      "categoria": "Metadados",
+      "pergunta": "Quais problemas de entrega foram relatados nas compras do ano de 2017?",
+      "filtro_aplicado": {
+        "$and": [
+          {
+            "ano_mes": {
+              "$gte": 201701
+            }
+          },
+          {
+            "ano_mes": {
+              "$lte": 201712
+            }
+          }
+        ]
+      },
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "949eca021ed60d00a2d2bda3cc686d4d",
+        "e351b3b3e78783f104b6c93e6214e841",
+        "b8db5dce83ae6824977a6a8212d0ce1b",
+        "40368ae04cbf5e00a388b6a924b99039",
+        "6817f4432df839abf425bf213b218056"
+      ],
+      "distancias": [
+        0.3548817038536072,
+        0.36175239086151123,
+        0.37745940685272217,
+        0.3858085870742798,
+        0.38946884870529175
+      ],
+      "menor_distancia": 0.3548817038536072
+    },
+    {
+      "id": "P11",
+      "categoria": "Metadados",
+      "pergunta": "O que os clientes reclamam em pedidos com entrega atrasada?",
+      "filtro_aplicado": {
+        "situacao_entrega": "atrasado"
+      },
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "c625fc3013b57a90dac13f9138d9436c",
+        "a553875413fd30a7f78cd701b0064a6f",
+        "93070d6a76f6affb41c1e64d7fc6230f",
+        "7c4c2d10a57d4aab58a570a5a8ac9f2c",
+        "8f9772ae7dec3db4af0418fd7fb1be4d"
+      ],
+      "distancias": [
+        0.2572023868560791,
+        0.2607771158218384,
+        0.26304084062576294,
+        0.2832050323486328,
+        0.29439908266067505
+      ],
+      "menor_distancia": 0.2572023868560791
+    },
+    {
+      "id": "P12",
+      "categoria": "Fora do Escopo",
+      "pergunta": "Qual é a política de reembolso para voos internacionais e passagens aéreas na Olist?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "a6d8671d04e0055b62713f3bfe2c05cd",
+        "5e336718a575cd6067a6cc14f1f3fb3d",
+        "f1f7c913d396a687f021ae96b6f8a093",
+        "0ce7d6b5abde2f5802a1793b37690ce6",
+        "53a796ebb6934010e69897a70049688d"
+      ],
+      "distancias": [
+        0.46901053190231323,
+        0.48205775022506714,
+        0.4875072240829468,
+        0.49815285205841064,
+        0.5025151968002319
+      ],
+      "menor_distancia": 0.46901053190231323
+    },
+    {
+      "id": "P13",
+      "categoria": "Fora do Escopo",
+      "pergunta": "Quem é o atual CEO da Olist e qual o faturamento da empresa em 2025?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "19b289d10af324db17e6a0599fc9190c",
+        "bd4f19c2b2ddd170da197b3540e57ed0",
+        "4619d9439a2981525943a5ab1b345574",
+        "c590111a133d34762cb8f2d5a02b8f12",
+        "2480ae2d2615f70dc842b73405cfb473"
+      ],
+      "distancias": [
+        0.4207744598388672,
+        0.444424033164978,
+        0.44778817892074585,
+        0.4620513319969177,
+        0.4695436358451843
+      ],
+      "menor_distancia": 0.4207744598388672
+    },
+    {
+      "id": "P14",
+      "categoria": "Fora do Escopo",
+      "pergunta": "Qual é a garantia para aspiradores de pó Electrolux comprados com cupom?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "312327a3f1d8387a2c36bcb14d65c272",
+        "6455da2ed550cf0683d7fbffb4d25b23",
+        "0501aab2f381486c36bf0f071442c0c2",
+        "83963224a4ebff3af10c5f9d094cd3e6",
+        "b2f4c784475aa1ca9aa74122a49f33ec"
+      ],
+      "distancias": [
+        0.4086381793022156,
+        0.42408013343811035,
+        0.4248241186141968,
+        0.4258303642272949,
+        0.45295071601867676
+      ],
+      "menor_distancia": 0.4086381793022156
+    },
+    {
+      "id": "P15",
+      "categoria": "Fora do Escopo",
+      "pergunta": "Como faço para atualizar meu endereço de entrega pelo aplicativo da Olist?",
+      "filtro_aplicado": null,
+      "qtd_evidencias": 5,
+      "evidencias_review_ids": [
+        "58a3b0c6edfc9b86bcd7f6fbe40cd5e4",
+        "92d6002f4d729d694527d1c5a9150e80",
+        "9820c73449fdacc59185d514646d39c5",
+        "733c944c2104898f200bf53aa1692f47",
+        "56041d61ef1539f9ce8ee64b02073145"
+      ],
+      "distancias": [
+        0.4593355059623718,
+        0.4637218713760376,
+        0.47280359268188477,
+        0.473896324634552,
+        0.47435128688812256
+      ],
+      "menor_distancia": 0.4593355059623718
+    }
+  ]
+}

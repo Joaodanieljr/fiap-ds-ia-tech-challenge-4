@@ -24,7 +24,11 @@ COLUNAS_METADADOS = ["nota", "categoria", "data_compra", "ano_mes", "situacao_en
 TAMANHO_LOTE = 1000   # o Chroma limita quantos registros aceita por chamada
 
 
-def indexar_base(tamanho_amostra: int | None = None) -> None:
+def indexar_base(
+    tamanho_amostra: int | None = None,
+    persist_directory: str | Path = PASTA_INDICE,
+    collection_name: str = NOME_COLECAO,
+) -> None:
     base = preparar_base()
     if tamanho_amostra:
         base = base.sample(tamanho_amostra, random_state=42)   # amostra reprodutível
@@ -36,13 +40,17 @@ def indexar_base(tamanho_amostra: int | None = None) -> None:
         base["texto"].tolist(), batch_size=64, show_progress_bar=True, normalize_embeddings=True
     )
 
-    cliente = chromadb.PersistentClient(path=str(PASTA_INDICE))
+    persist_directory = Path(persist_directory)
+    persist_directory.mkdir(parents=True, exist_ok=True)
+    cliente = chromadb.PersistentClient(path=str(persist_directory))
     # Recria a coleção do zero: rodar o script duas vezes não duplica nem mistura amostra com base completa
     try:
-        cliente.delete_collection(NOME_COLECAO)
+        cliente.delete_collection(collection_name)
     except Exception:
         pass   # coleção ainda não existe na primeira execução
-    colecao = cliente.create_collection(NOME_COLECAO, metadata={"hnsw:space": "cosine"})
+    colecao = cliente.create_collection(
+        collection_name, metadata={"hnsw:space": "cosine"}
+    )
 
     for inicio in range(0, len(base), TAMANHO_LOTE):
         fim = inicio + TAMANHO_LOTE
@@ -54,10 +62,28 @@ def indexar_base(tamanho_amostra: int | None = None) -> None:
             metadatas=lote[COLUNAS_METADADOS].to_dict("records"),
         )
 
-    print(f"Índice gravado em {PASTA_INDICE} ({colecao.count()} documentos)")
+    print(
+        f"Índice gravado em {persist_directory} / {collection_name} "
+        f"({colecao.count()} documentos)"
+    )
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Indexa as avaliações da Olist no ChromaDB.")
     parser.add_argument("--amostra", type=int, help="indexa só N avaliações aleatórias")
-    indexar_base(parser.parse_args().amostra)
+    parser.add_argument(
+        "--persist-directory",
+        default=str(PASTA_INDICE),
+        help="diretório persistente do Chroma (padrão: data/chroma)",
+    )
+    parser.add_argument(
+        "--collection-name",
+        default=NOME_COLECAO,
+        help=f"coleção Chroma (padrão: {NOME_COLECAO})",
+    )
+    argumentos = parser.parse_args()
+    indexar_base(
+        tamanho_amostra=argumentos.amostra,
+        persist_directory=argumentos.persist_directory,
+        collection_name=argumentos.collection_name,
+    )

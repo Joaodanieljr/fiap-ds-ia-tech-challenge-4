@@ -16,10 +16,12 @@ class RagPipeline:
         retriever: ReviewRetriever,
         generator: AnswerGenerator,
         top_k: int = 5,
+        max_distance: float | None = None,
     ) -> None:
         self.retriever = retriever
         self.generator = generator
         self.top_k = top_k
+        self.max_distance = max_distance
 
     def answer(
         self,
@@ -31,9 +33,18 @@ class RagPipeline:
             limit=self.top_k,
             where=where,
         )
+        if self.max_distance is not None:
+            evidence = [
+                item
+                for item in evidence
+                if item.distance is not None and item.distance <= self.max_distance
+            ]
         if not evidence:
             return Answer(
-                text="Nao encontrei avaliacoes relevantes para responder com seguranca.",
+                text=(
+                    "Nao encontrei evidencias com similaridade suficiente para "
+                    "responder com seguranca."
+                ),
                 evidence=[],
                 abstained=True,
             )
