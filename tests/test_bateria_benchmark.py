@@ -44,6 +44,7 @@ def rodar_benchmark() -> int:
         retriever=retriever,
         generator=generator,
         top_k=settings.retrieval_top_k,
+        max_distance=settings.retrieval_max_distance,
     )
 
     print("Executando Bateria de Testes")
@@ -88,6 +89,10 @@ def rodar_benchmark() -> int:
                     "resposta_gerada": texto_resposta,
                     "qtd_evidencias": len(evidencias_ids),
                     "evidencias_review_ids": evidencias_ids,
+                    "abstained": resposta_obj.abstained,
+                    "evidencias_distancias": [
+                        ev.distance for ev in evidencias if hasattr(ev, "distance")
+                    ],
                 }
             )
         else:
@@ -129,7 +134,10 @@ def test_relatorio_entregue_tem_resultados_consistentes() -> None:
     for resultado in resultados:
         assert "erro" not in resultado
         assert "resposta_gerada" in resultado
-        assert resultado["qtd_evidencias"] == 5
         assert resultado["qtd_evidencias"] == len(
             resultado["evidencias_review_ids"]
         )
+        if resultado.get("abstained"):
+            assert resultado["qtd_evidencias"] == 0
+        else:
+            assert resultado["qtd_evidencias"] > 0
