@@ -4,6 +4,10 @@ Assistente de análise qualitativa de avaliações do Brazilian E-Commerce Publi
 O usuário faz uma pergunta em linguagem natural; o sistema busca reviews relacionados e gera uma
 resposta com referências às avaliações que serviram de evidência.
 
+## Apresentação
+
+A apresentação do projeto está disponível em [docs/apresentacao.mp4](docs/apresentacao.mp4).
+
 ## Valor para o negócio
 
 O projeto reduz o esforço de explorar manualmente milhares de comentários e ajuda a identificar
