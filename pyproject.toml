@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "olist-voice-of-customer-rag"
+version = "0.1.0"
+description = "RAG para explorar avaliações de clientes do dataset brasileiro de e-commerce Olist."
+requires-python = ">=3.10"
+dependencies = [
+    "chromadb>=0.5,<2",
+    "google-genai>=1.0,<2",
+    "python-dotenv>=1.0,<2",
+    "sentence-transformers>=3.0,<6",
+    "streamlit>=1.40,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+data = [
+    "kagglehub>=0.3,<1",
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<4",
+]
+notebooks = ["ipykernel>=6.29,<8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
